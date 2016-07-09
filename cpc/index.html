@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Talons generator</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<form id="formulaire">
+		<h1>Talons generator</h1>
+		<input type="text" id="nom" placeholder="nom" autofocus required>
+		<input type="text" id="cours" placeholder="cours" required>
+		<input type="number" id="nombre" placeholder="nombre de leçons" required>
+		<input type="submit" value="OK">
+	</form>
+	<div id="talons">
+		<div class="talon hidden">
+			<img src="logo.png">
+			<div class="text">
+				<h2>Talon de leçon du cours par correspondance pour email</h2>
+				<p>Nom de l'étudiant : <span class="nomTalon"></span></p>
+				<p>Nom du cours : <span class="coursTalon"></span></p>
+				<p>Numéro de la leçon : <span class="numeroTalon"></span></p>
+			</div>
+			<div class="note">
+				<p>100%</p>
+				<span>Note du superviseur</span>
+			</div>
+		</div>
+	</div>
+	<script>
+	var modele = document.querySelector('.talon');
+
+	document.getElementById('formulaire').onsubmit = function(event){
+		event.preventDefault();
+		document.getElementById('formulaire').className = "hidden";
+
+		var nom = document.getElementById('nom').value;
+		var cours = document.getElementById('cours').value;
+		var nombre = document.getElementById('nombre').value;
+		nombre = parseInt(nombre);
+
+		for(var i = 1 ; i <= nombre ; i++){
+			var talon = modele.cloneNode(true);
+			talon.className = "talon";
+
+			talon.querySelector('.nomTalon').textContent = nom;
+			talon.querySelector('.coursTalon').textContent = cours;
+			talon.querySelector('.numeroTalon').textContent = i;
+			document.getElementById("talons").appendChild(talon);
+		}
+	};
+	</script>
+</body>
+</html>
