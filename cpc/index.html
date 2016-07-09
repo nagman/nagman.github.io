@@ -49,7 +49,9 @@
 			talon.querySelector('.numeroTalon').textContent = i;
 			document.getElementById("talons").appendChild(talon);
 		}
-		window.print();
+		setTimeout(function(){
+			window.print();
+		}, 1000);
 	};
 	</script>
 </body>
